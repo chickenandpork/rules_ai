@@ -35,3 +35,10 @@ jobs:
           key: _bazel_runner
       - run: bazel build //...
       - run: bazel test //...
+      - name: Build examples to ensure functionality
+        run: |
+            for d in $(find examples -name WORKSPACE -exec dirname {} \; ); do
+            echo "::group::example: ${d}"
+            (cd ${d} && bazel build //...);
+            echo "::endgroup::"
+            done
