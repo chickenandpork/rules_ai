@@ -1,0 +1,21 @@
+load("@rules_python//python:defs.bzl", "py_library", "py_test")
+
+py_library(
+    name = "helloworld",
+    srcs = ["helloworld.py"],
+)
+
+py_test(
+    name = "message_test",
+    size = "small",
+    srcs = ["helloworld_test.py"],
+    deps = [":helloworld"],
+    main = "helloworld_test.py",
+)
+
+py_test(
+    name = "sysinfo_test",
+    size = "small",
+    srcs = ["sysinfo_test.py"],
+    main = "sysinfo_test.py",
+)
