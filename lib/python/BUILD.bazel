@@ -2,12 +2,14 @@ load("@rules_python//python:pip.bzl", "compile_pip_requirements")
 load("@python39//:defs.bzl", "interpreter")
 
 # This rule adds a convenient way to update the requirements file.
+#   bazel run //lib/python:requirements.update
+#   bazel test //lib/python:requirements.test
 compile_pip_requirements(
     name = "requirements",
+    timeout = "long",  # long==900 seconds, eternal==3600
     extra_args = ["--allow-unsafe"],
-    #interpreter = interpreter,
-    #toolchains = [  interpreter ],
     requirements_darwin = "requirements_darwin.txt",
+    requirements_in = "requirements.in",
     requirements_linux = "requirements_linux.txt",
     requirements_txt = "requirements.txt",
 )
