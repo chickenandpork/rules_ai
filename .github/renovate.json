@@ -7,7 +7,7 @@
   "packageRules": [
     {
       "automerge": true,
-      "enabled": true,
+      "enabled": false,
       "matchManagers": [ "bazel" ],
       "matchUpdateTypes": [ "patch", "minor" ]
     }
