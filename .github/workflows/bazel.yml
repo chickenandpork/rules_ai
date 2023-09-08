@@ -1,0 +1,37 @@
+name: Bazel build
+
+env:
+  HOMEBREW_NO_AUTO_UPDATE: 1
+  # typically used for bazel internal testing: changes outputRoot, sets idletimeout to ~15s
+  TEST_TMPDIR: /tmp/bazel
+
+# yamllint disable-line rule:truthy
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+  push:
+
+jobs:
+  build:
+    name: Build on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+
+    steps:
+      - uses: actions/checkout@v4
+        # action runners have bazelisk: - uses: bazelbuild/setup-bazelisk@v2
+        # https://github.com/bazelbuild/bazel/issues/11062
+      - run: mkdir -p "${TEST_TMPDIR}"
+      - run: env | sort
+      - name: Mount bazel cache  # Optional
+        uses: actions/cache@v3
+        with:
+          # needs to be an absolute path, not a variable; I've made it match TEST_TMPDIR above
+          path: /tmp/bazel
+          key: _bazel_runner
+      - run: bazel build //...
+      - run: bazel test //...
