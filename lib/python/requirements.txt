@@ -300,9 +300,9 @@ langchain==0.0.277 \
     --hash=sha256:248444a78010d7b7d2f5293873d2a267deed42c396c88c27e68669c8342237b3 \
     --hash=sha256:c8b4046cd0b2f134bfb4d3826bcf3d3caf807f7c59a1f8c127bb13f6483d921d
     # via -r lib/python/requirements.in
-langsmith==0.0.29 \
-    --hash=sha256:1b8fa032bf1671d80fed027545aa822ef8f39fec0381b799a9c511120e8e8258 \
-    --hash=sha256:d389a0199937cb219d7cb90d4adbed7f3902818b22b604bb1ced5b74c571cfe5
+langsmith==0.0.35 \
+    --hash=sha256:127fee806b475430b530bdf9bc397ea1c65ec144a23fa1b5bba2bba31d9d1e76 \
+    --hash=sha256:96b5cf69952a218d881a27817381fa67ebd283eba9c6814b72180530f9748348
     # via langchain
 markupsafe==2.1.3 \
     --hash=sha256:05fb21170423db021895e1ea1e1f3ab3adb85d1c2333cbc2310f2a26bc77272e \
