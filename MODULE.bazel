@@ -6,12 +6,10 @@ module(
 bazel_dep(name = "rules_python", version = "0.25.0")
 
 python = use_extension("@rules_python//python/extensions:python.bzl", "python")
-
 python.toolchain(
-    python_version = "3.11",
     is_default = True,
+    python_version = "3.11",
 )
-
 use_repo(python, "python_3_11")
 use_repo(python, "python_versions")
 

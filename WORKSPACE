@@ -1,2 +1,1 @@
-workspace(name="rules_ai")
-
+workspace(name = "rules_ai")
