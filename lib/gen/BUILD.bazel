@@ -1,0 +1,1 @@
+exports_files(["requirements_{}.bzl".format(s) for s in [ "darwin", "linux", "windows" ]])

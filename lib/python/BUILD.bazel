@@ -1,5 +1,19 @@
+load("@bazel_skylib//rules:diff_test.bzl", "diff_test")
+load("@bazel_skylib//rules:write_file.bzl", "write_file")
 load("@rules_python//python:pip.bzl", "compile_pip_requirements")
 load("@python39//:defs.bzl", "interpreter")
+
+OSs = [
+    "darwin",
+    "linux",
+    "windows",
+]
+
+exports_files([
+    "requirements.in",
+    "requirements_darwin.txt",
+    "requirements_linux.txt",
+] + ["requirements_{}.bzl".format(s) for s in OSs])
 
 # This rule adds a convenient way to update the requirements file.
 #   bazel run //lib/python:requirements.update
@@ -12,4 +26,83 @@ compile_pip_requirements(
     requirements_in = "requirements.in",
     requirements_linux = "requirements_linux.txt",
     requirements_txt = "requirements.txt",
+)
+
+# (based on https://github.com/bazelbuild/rules_python/blob/6d4fa3c72e292472c754c26d0ed22e48e09cc2fc/examples/pip_parse_vendored/BUILD.bazel#L9C1-L26C1)
+# The requirements.bzl file is generated in WORKSPACE via `pip_parse(name = "pypi", ...`, and can
+# be referenced as @pypi//:requirements.bzl.  requirements.bzl is generated with a reference to
+# the interpreter for the host platform, as well as a set of requirements specific to the OS (OS,
+# not architecture, so the difference between linux/aarch64 and linux/x86-64 may be some future
+# techdebt).  We need to:
+#
+# 1. replace the interpreter from a hardcoded "pythonXY" (ie "python39" or "python_3_11") to one
+#    from the python toolchain, and
+# 2. keep the requirements_darwin.txt and requirements_linux.txt separate (similarly, windows)
+#
+# making #2 more complex is that python's assumption of build_platform==deploy_platform means we
+# cannot (yet?) regenerate cross-platform: for example, requirements_linux.txt on a macos box.
+
+[genrule(
+    name = "make_platform_agnostic_{}".format(s),
+    srcs = ["@pypi//:requirements.bzl"],
+    outs = ["requirements_{}_regen.bzl".format(s)],
+    cmd = " | ".join([
+        "cat $<",
+        # Insert our load statement after the existing one so we don't produce a file with buildifier warnings
+        """sed -e '/^load.*.whl_library/i\\'$$'\\n''load("@python39//:defs.bzl", "interpreter")'""",
+        # Replace the bazel 6.0.0 specific comment with something that bazel 5.4.0 would produce.
+        # This enables this example to be run as a test under bazel 5.4.0.
+        """sed -e 's#@//#//#'""",
+        """sed 's#"@python39_.*//:bin/python3"#interpreter#' >$@""",
+    ]),
+) for s in OSs]
+
+# Create set of scripts to copy the output of :make_platform_agnostic_XX to //:requirements_XX.bzl
+[write_file(
+    name = "gen_update_{}".format(s),
+    out = "update_{}.sh".format(s),
+    content = [
+        # This depends on bash, would need tweaks for Windows
+        "#!/usr/bin/env bash",
+        # Bazel gives us a way to access the source folder!
+        "cd $BUILD_WORKSPACE_DIRECTORY",
+        "cp -fv bazel-bin/lib/python/requirements_{}_regen.bzl lib/gen/requirements_{}.bzl".format(s, s),
+        "",
+    ],
+) for s in OSs]
+
+# run these scripts as a simple "vendor_requirements"; this redirection allows us to have a static,
+# predictable error message when the `diff_test(name="test_vendored", ...)` reports failure.
+alias(
+    name = "vendor_requirements",
+    actual = select({
+        "@platforms//os:linux": ":vendor_requirements_linux",
+        "@platforms//os:macos": ":vendor_requirements_darwin",
+        "@platforms//os:windows": ":vendor_requirements_windows",
+    }),
+)
+
+# ...and here's the actual binary that runs: three template-named binaries wrapping the generated
+# script as a runnable shell binary.
+[sh_binary(
+    name = "vendor_requirements_{}".format(s),
+    srcs = ["update_{}.sh".format(s)],
+    data = [":make_platform_agnostic_{}".format(s)],
+) for s in OSs]
+
+# Similarly ensures that the requirements.bzl file is updated
+# based on the requirements.txt lockfile.
+diff_test(
+    name = "test_vendored",
+    failure_message = "Please run:  bazel run //lib/python:vendor_requirements",
+    file1 = select({
+        "@platforms//os:linux": "@rules_ai//lib/gen:requirements_linux.bzl",
+        "@platforms//os:macos": "@rules_ai//lib/gen:requirements_darwin.bzl",
+        "@platforms//os:windows": "@rules_ai//lib/gen:requirements_windows.bzl",
+    }),
+    file2 = select({
+        "@platforms//os:linux": ":make_platform_agnostic_linux",
+        "@platforms//os:macos": ":make_platform_agnostic_darwin",
+        "@platforms//os:windows": ":make_platform_agnostic_windows",
+    }),
 )
