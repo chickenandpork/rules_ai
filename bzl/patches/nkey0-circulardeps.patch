@@ -1,0 +1,18 @@
+diff --git python/pip_install/tools/wheel_installer/wheel_installer.py python/pip_install/tools/wheel_installer/wheel_installer.py
+index c6c2961..b0f9f76 100644
+--- python/pip_install/tools/wheel_installer/wheel_installer.py
++++ python/pip_install/tools/wheel_installer/wheel_installer.py
+@@ -129,7 +129,11 @@ def _extract_wheel(
+     # Packages may create dependency cycles when specifying optional-dependencies / 'extras'.
+     # Example: github.com/google/etils/blob/a0b71032095db14acf6b33516bca6d885fe09e35/pyproject.toml#L32.
+     self_edge_dep = set([whl.name])
+-    whl_deps = sorted(whl.dependencies(extras_requested) - self_edge_dep)
++    deps = whl.dependencies(extras_requested)
++    if (whl.name == "triton") and ("torch" in deps):
++        deps.remove("torch")
++
++    whl_deps = sorted(deps - self_edge_dep)
+
+     with open(os.path.join(installation_dir, "metadata.json"), "w") as f:
+         metadata = {
+

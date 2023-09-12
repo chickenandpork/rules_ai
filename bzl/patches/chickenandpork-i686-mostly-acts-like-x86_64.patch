@@ -1,0 +1,12 @@
+diff -ur python/private/toolchains_repo.bzl python/private/toolchains_repo.bzl
+--- python/private/toolchains_repo.bzl	2023-08-22 21:07:31.000000000 +0000
++++ python/private/toolchains_repo.bzl	2023-09-11 23:48:54.047829875 +0000
+@@ -327,6 +327,8 @@
+     else:
+         # This is not ideal, but bazel doesn't directly expose arch.
+         arch = rctx.execute([which_with_fail("uname", rctx), "-m"]).stdout.strip()
++        if arch == "i686":
++              arch = "x86_64"
+ 
+         # Normalize the os_name.
+         if "mac" in os_name.lower():
