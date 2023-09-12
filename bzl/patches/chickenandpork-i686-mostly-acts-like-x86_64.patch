@@ -7,6 +7,6 @@ diff -ur python/private/toolchains_repo.bzl python/private/toolchains_repo.bzl
          arch = rctx.execute([which_with_fail("uname", rctx), "-m"]).stdout.strip()
 +        if arch == "i686":
 +              arch = "x86_64"
- 
+
          # Normalize the os_name.
          if "mac" in os_name.lower():
