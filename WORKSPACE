@@ -5,6 +5,8 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 http_archive(
     name = "rules_python",
     patches = [
+        "//bzl/patches:chickenandpork-i686-mostly-acts-like-x86_64.patch",
+
         # https://github.com/bazelbuild/rules_python/pull/1166 not yet merged; I'd like to use:
         # (in pip_parse())
         # requirement_clusters = {
