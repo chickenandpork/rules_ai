@@ -12,5 +12,5 @@ docker build -t crossx86:latest - < tools/Dockerfile
 ... then run as:
 ```
 docker run   --rm -it -e USER="$(id -u)" -e HOME=/tmp/bazel  -u="$(id -u)"   -v $HOME/src/rules_ai:/rules_ai   -v /tmp/build_output:/tmp/build_output   -w /rules_ai   crossx86:latest /bin/bash
-I have no name!@3e66be1b7df4:/rules_ai$ mkdir ~ && bazel run //lib/python:requirements.update
+I have no name!@3e66be1b7df4:/rules_ai$ mkdir ~ && bazel run //lib/python:requirements.update && bazel run //lib/python:vendor_requirements
 ```

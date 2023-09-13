@@ -3,3 +3,5 @@ flask
 requests
 langchain
 openai
+torch
+transformers
