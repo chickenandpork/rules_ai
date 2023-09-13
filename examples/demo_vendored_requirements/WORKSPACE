@@ -39,7 +39,7 @@ pip_install_dependencies()
 
 load("@rules_ai//:requirements.bzl", "vendored_requirements")
 
-vendored_requirements(name="pypi")
+vendored_requirements(name = "pypi")
 
 load("@pypi//:requirements.bzl", "install_deps")
 
