@@ -20,6 +20,6 @@ py_test(
     size = "small",
     srcs = ["sysinfo_test.py"],
     main = "sysinfo_test.py",
-    tags = [ "manual" ],   # hermetic toolchain is failing; remove this to cut the commit charge and revisit hermeticity
+    tags = ["manual"],  # hermetic toolchain is failing; remove this to cut the commit charge and revisit hermeticity
     #deps = [ requirement("requests") ],  # I found that deps brings in an implicit connection to the toolchain?
 )
