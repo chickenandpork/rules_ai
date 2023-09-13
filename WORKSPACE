@@ -2,25 +2,32 @@ workspace(name = "rules_ai")
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
-http_archive(
-    name = "rules_python",
-    patches = [
-        "//bzl/patches:chickenandpork-i686-mostly-acts-like-x86_64.patch",
+load("@rules_ai//:deps.bzl", rules_ai_dependencies = "dependencies", "python_toolchains_and_requirements")
 
-        # https://github.com/bazelbuild/rules_python/pull/1166 not yet merged; I'd like to use:
-        # (in pip_parse())
-        # requirement_clusters = {
-        #     "torch-triton": [
-        #         "torch",
-        #         "triton",
-        #     ]}
-        # ... but PR1166 not yet merged.  nkey0's workaround hardcoding triton and torch
-        "//bzl/patches:nkey0-circulardeps.patch",  # https://github.com/bazelbuild/rules_python/pull/1166#issuecomment-1701230930
-    ],
-    sha256 = "5868e73107a8e85d8f323806e60cad7283f34b32163ea6ff1020cf27abef6036",
-    strip_prefix = "rules_python-0.25.0",
-    url = "https://github.com/bazelbuild/rules_python/releases/download/0.25.0/rules_python-0.25.0.tar.gz",
-)
+rules_ai_dependencies()
+
+python_toolchains_and_requirements(name="ptar", python_version = "3.9", python_repo_name="python39", pypi_repo_name = "pypi")
+
+load("@ptar//:python_toolchain_and_requirements.bzl", ptar="python_toolchains_and_requirements")
+ptar()
+
+#python_toolchains_and_requirements((python_version = "3.9", python_repo_name="python39", pypi_repo_name = "pypi", lockfiles={
+#    "darwin": "//lib/python:requirements_darwin.txt",
+#    "linux": "//lib/python:requirements_linux.txt",
+#    "default": "//lib/python:requirements.txt",
+#})
+
+
+#load("@rules_ai//:toolchains.bzl", rules_ai_register_toolchains = "register_toolchains")
+#
+#rules_ai_register_toolchains (python_version = "3.9", python_repo_name="python39", pypi_repo_name = "pypi", lockfiles={
+#    "darwin": "//lib/python:requirements_darwin.txt",
+#    "linux": "//lib/python:requirements_linux.txt",
+#    "default": "//lib/python:requirements.txt",
+#})
+
+
+
 
 load("@rules_python//python:repositories.bzl", "py_repositories", "python_register_toolchains")
 
