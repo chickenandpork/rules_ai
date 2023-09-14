@@ -9,3 +9,10 @@ py_binary(
         "@pypi_transformers//:pkg",
     ],
 )
+
+py_test(
+    name = "test",
+    size = "small",
+    srcs = ["test.py"],
+    deps = [":main"],
+)
