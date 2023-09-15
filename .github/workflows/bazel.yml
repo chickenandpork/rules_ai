@@ -4,6 +4,7 @@ env:
   HOMEBREW_NO_AUTO_UPDATE: 1
   # typically used for bazel internal testing: changes outputRoot, sets idletimeout to ~15s
   TEST_TMPDIR: /tmp/bazel
+  TRANSFORMERS_CACHE: /tmp/bazel/huggingface-transformers-cache
 
 # yamllint disable-line rule:truthy
 on:
@@ -34,11 +35,11 @@ jobs:
           path: /tmp/bazel
           key: _bazel_runner
       - run: bazel build //...
-      - run: bazel test //...
+      - run: bazel test //... --test_output=errors --test_summary=detailed
       - name: Build examples to ensure functionality
         run: |
             for d in $(find examples -name WORKSPACE -exec dirname {} \; ); do
             echo "::group::example: ${d}"
-            (cd ${d} && bazel build //... && bazel test //...);
+            (cd ${d} && bazel build //... && bazel test //...  --test_output=errors --test_summary=detailed --action_env=TRANSFORMERS_CACHE );
             echo "::endgroup::"
             done

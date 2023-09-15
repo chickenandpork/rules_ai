@@ -1,14 +1,17 @@
 import unittest
 
 import main
-from transformers import ( pipeline, pipelines )
+from transformers import pipeline, pipelines
+
 
 class ExampleTest(unittest.TestCase):
     def test_main(self):
-        #generate = main.generate()
+        # generate = main.generate()
 
         generator = pipeline("text-generation", model="distilgpt2")
-        self.assertIsInstance(generator, pipelines.text_generation.TextGenerationPipeline)
+        self.assertIsInstance(
+            generator, pipelines.text_generation.TextGenerationPipeline
+        )
 
         # Exercise/acivate the pipeline
         generate = generator(

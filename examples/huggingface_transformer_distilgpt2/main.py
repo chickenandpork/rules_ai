@@ -2,6 +2,7 @@
 
 from transformers import pipeline
 
+
 def generate():
     generator = pipeline("text-generation", model="distilgpt2")
     generator(
@@ -11,10 +12,10 @@ def generate():
     )
     return generator
 
+
 def main():
     print(f"Result: {generate()}")
 
 
 if __name__ == "__main__":
     main()
-
