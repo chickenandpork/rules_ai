@@ -1,20 +1,21 @@
 # This is based on https://www.youtube.com/watch?v=tiZFewofSLM&t=160
 
-from transformers import pipeline
+from transformers import pipeline, pipelines
 
 
-def generate():
-    generator = pipeline("text-generation", model="distilgpt2")
-    generator(
+def generate() -> pipelines.text_generation.TextGenerationPipeline:
+    return pipeline("text-generation", model="distilgpt2")
+
+
+def main():
+    gen = generate(
         "In this course, we will teach you how to",
         max_length=30,
         num_return_sequences=2,
     )
-    return generator
 
-
-def main():
-    print(f"Result: {generate()}")
+    # gen is low a list of dist: [ {'generated_text': 'In this course, ...'}, {'generated_text': 'In this course, ...'} ]
+    print(f"Result: {gen}")
 
 
 if __name__ == "__main__":
