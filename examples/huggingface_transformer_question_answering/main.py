@@ -12,8 +12,11 @@ def qa() -> pipelines.question_answering.QuestionAnsweringPipeline:
 
 
 def main():
-    # Exercise/acivate the pipeline
-    answer = qa(
+    # Instantiate the pipeline
+    answering = qa()
+
+    # Exercise the pipeline
+    answer = answering(
         question="What did I eat?",
         context="We went down to the dock and met a few friends.  I gobbled a cookie and drank some very sweet tea as we walked the length of the docks",
     )

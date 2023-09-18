@@ -8,7 +8,9 @@ def generate() -> pipelines.text_generation.TextGenerationPipeline:
 
 
 def main():
-    gen = generate(
+    generator = generate()
+
+    gen = generator(
         "In this course, we will teach you how to",
         max_length=30,
         num_return_sequences=2,

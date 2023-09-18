@@ -11,7 +11,11 @@ def recognize() -> pipelines.token_classification.TokenClassificationPipeline:
 
 
 def main():
-    rec = recognize(
+    # Instantiate the pipeline
+    recognizer = recognize()
+
+    # Exercise the pipeline
+    rec = recognizer(
         "Hi I'm Allan Clark from Seattle, and I used the Bazel tool at Apple, Snap, and BCAI"
     )
     print(f"Result: {rec}")
