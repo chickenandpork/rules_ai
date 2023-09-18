@@ -16,7 +16,10 @@ def fillmask() -> pipelines.fill_mask.FillMaskPipeline:
 
 
 def main():
-    # Exercise/acivate the pipeline
+    # Instantiate the pipeline
+    maskfiller = fillmask()
+
+    # Exercise it
     fill = maskfiller("I am hungry for <mask> icecream", top_k=3)
     print(f"Result: {fill}")
 
