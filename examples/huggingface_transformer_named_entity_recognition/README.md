@@ -1,9 +1,9 @@
-# HuggingFace Transformer Example: test-generation, distilgpt2
+# HuggingFace Transformer Example: Named Entity Recognition
 
-In the first lesson of the HuggingFace's training, Transforms are introduced.  The first example
-involves distilgpt2 as presented in this example code, except it was not marked-up in any scope.
-Likely it was originally done in a Jupyter notebook, but I've wrapped in a basic Python function
-for coding consistency (old-fashioned standard perhaps).
+In the first lesson of the HuggingFace's training, Transforms are introduced.  one later example
+that interested me was the Named Entity Recognition, so I added it as a test/demonstration.  The
+example code wasn't marked-up in any scope.  Likely it was originally done in a Jupyter notebook,
+but I've wrapped in a basic Python function for coding consistency (old-fashioned standard perhaps).
 
 The intent here is to confirm that Huggingface libraries, and their dependencies, can be used by
 the rules_ai ruleset.
@@ -17,7 +17,7 @@ accurate and reliable.
 (use TRANSFORMERS_CACHE to cache transformers for next time)
 
 ```
-( cd examples/huggingface_transformer_distilgpt2 && \
+( cd examples/huggingface_transformer_named_entity_recognition && \
     bazel run //:main \
     --action_env=TRANSFORMERS_CACHE=/tmp/huggingface-transformers-cache \
 )
@@ -25,7 +25,7 @@ accurate and reliable.
 
 ## Testing
 
-(cd examples/huggingface_transformer_distilgpt2 && \
+(cd examples/huggingface_transformer_named_entity_recognition && \
     bazel test //... \
     --action_env=TRANSFORMERS_CACHE=/tmp/huggingface-transformers-cache \
 )

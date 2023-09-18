@@ -1,9 +1,11 @@
-# HuggingFace Transformer Example: test-generation, distilgpt2
+# HuggingFace Transformer Example: question-answering
 
-In the first lesson of the HuggingFace's training, Transforms are introduced.  The first example
-involves distilgpt2 as presented in this example code, except it was not marked-up in any scope.
-Likely it was originally done in a Jupyter notebook, but I've wrapped in a basic Python function
-for coding consistency (old-fashioned standard perhaps).
+After the example using "distilgpt2" to generate text, the Huggingface video shows using a
+question-answering transform to answer simple questions about the text provided as context.  Now, in
+a real-life example, this might be some live web-grabs, something distilled from GDELTs, or even
+post-evaluating a generated result to ensure it provides a usable summary (use your AI to check the
+results of your AI).  This variant wraps the basic work in a function call to keep the scope clean,
+a typical best-practice in Python to avoid immediately running the defined code.
 
 The intent here is to confirm that Huggingface libraries, and their dependencies, can be used by
 the rules_ai ruleset.
@@ -17,7 +19,7 @@ accurate and reliable.
 (use TRANSFORMERS_CACHE to cache transformers for next time)
 
 ```
-( cd examples/huggingface_transformer_distilgpt2 && \
+( cd examples/huggingface_transformer_question-answering && \
     bazel run //:main \
     --action_env=TRANSFORMERS_CACHE=/tmp/huggingface-transformers-cache \
 )
@@ -25,7 +27,7 @@ accurate and reliable.
 
 ## Testing
 
-(cd examples/huggingface_transformer_distilgpt2 && \
+(cd examples/huggingface_transformer_question-answering && \
     bazel test //... \
     --action_env=TRANSFORMERS_CACHE=/tmp/huggingface-transformers-cache \
 )

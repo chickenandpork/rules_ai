@@ -1,9 +1,8 @@
-# HuggingFace Transformer Example: test-generation, distilgpt2
+# HuggingFace Transformer Example: mask-fill
 
-In the first lesson of the HuggingFace's training, Transforms are introduced.  The first example
-involves distilgpt2 as presented in this example code, except it was not marked-up in any scope.
-Likely it was originally done in a Jupyter notebook, but I've wrapped in a basic Python function
-for coding consistency (old-fashioned standard perhaps).
+After the example using "distilgpt2" to generate text, the Huggingface video discusses filling in
+missing words using a mask-fill.  This variant wraps the basic work in a function call to keep the
+scope clean, a typical best-practice in Python to avoid immediately running the defined code.
 
 The intent here is to confirm that Huggingface libraries, and their dependencies, can be used by
 the rules_ai ruleset.
@@ -17,7 +16,7 @@ accurate and reliable.
 (use TRANSFORMERS_CACHE to cache transformers for next time)
 
 ```
-( cd examples/huggingface_transformer_distilgpt2 && \
+( cd examples/huggingface_transformer_fillmask && \
     bazel run //:main \
     --action_env=TRANSFORMERS_CACHE=/tmp/huggingface-transformers-cache \
 )
@@ -25,7 +24,7 @@ accurate and reliable.
 
 ## Testing
 
-(cd examples/huggingface_transformer_distilgpt2 && \
+(cd examples/huggingface_transformer_fillmask && \
     bazel test //... \
     --action_env=TRANSFORMERS_CACHE=/tmp/huggingface-transformers-cache \
 )

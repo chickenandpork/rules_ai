@@ -1,6 +1,6 @@
 # based on rules_python/examples/pip_parse/WORKSPACE
 
-workspace(name = "huggingface_transformer_distilgpt2")
+workspace(name = "huggingface_transformer_named_entity_recognition")
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
