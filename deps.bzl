@@ -1,4 +1,5 @@
-# Rules to supply what the user hasn't alreayd overridden.
+# Rules to supply what the user hasn't already overridden: if a user wants to override one of the
+# "fallback" definitions below, simply define before the call to "dependencies()"
 #
 # The intent is for a simplification of what the user needs to maintain.
 
@@ -35,3 +36,4 @@ def dependencies():
         strip_prefix = "rules_python-0.25.0",
         url = "https://github.com/bazelbuild/rules_python/releases/download/0.25.0/rules_python-0.25.0.tar.gz",
     )
+
