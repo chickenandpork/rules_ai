@@ -18,6 +18,15 @@ def dependencies():
     )
     maybe(
         http_archive,
+        name = "com_github_masmovil_bazel_rules",
+        sha256 = "9c8ac4c60da1ccda076b2a8e5194a1d4bde96bcb44808ccb75ecca33b5669102",
+        strip_prefix = "bazel-rules-0.5.0",
+        urls = [
+            "https://github.com/masmovil/bazel-rules/archive/refs/tags/v0.5.0.tar.gz",
+        ],
+    )
+    maybe(
+        http_archive,
         name = "rules_python",
         patches = [
             "@rules_ai//bzl/patches:chickenandpork-i686-mostly-acts-like-x86_64.patch",
@@ -36,4 +45,3 @@ def dependencies():
         strip_prefix = "rules_python-0.25.0",
         url = "https://github.com/bazelbuild/rules_python/releases/download/0.25.0/rules_python-0.25.0.tar.gz",
     )
-
