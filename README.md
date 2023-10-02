@@ -165,7 +165,7 @@ if __name__ == "__main__":
 
 ### Running your first program
 
-`bazel build //...` of course builds everything, 
+`bazel build //...` of course builds everything,
 `bazel test //...` of course tests everything (all one unittests)
 `bazel run :main` will run the resulting `bazel-bin/main`:
 

@@ -81,7 +81,7 @@ iBazel - Version v0.23.7
 
 2. Check that `bazel` is responding (as bazelisk) and shows both versions:
 ```
-$ bazel version 2>&1 | head -2 
+$ bazel version 2>&1 | head -2
 Bazelisk version: v1.18.0
 Build label: 6.3.2
 ```
