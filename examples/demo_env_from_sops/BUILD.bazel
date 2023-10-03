@@ -1,5 +1,6 @@
 load("@pypi//:requirements.bzl", "requirement")
 load("@rules_python//python:defs.bzl", "py_binary", "py_test")
+load("@com_github_masmovil_bazel_rules//sops:sops.bzl", "sops_decrypt")
 
 py_test(
     name = "test",
@@ -10,5 +11,11 @@ py_test(
         "@pypi_pyyaml//:pkg",
         "@rules_ai//lib/python:envexport",
     ],
-    data = [ "sops_decrypt.yaml" ],
+    data = [ "sops_decrypt.yaml" , ":sd"],
+)
+
+sops_decrypt( name = "sd",
+    srcs = [ ":sops_api_keys.yaml" ],
+    sops_yaml = ":.sops.yaml",
+    #provider = "gpg",
 )

@@ -28,6 +28,9 @@ jobs:
         # https://github.com/bazelbuild/bazel/issues/11062
       - run: mkdir -p "${TEST_TMPDIR}"
       - run: env | sort
+      - name: Import private GPG key from variable PRIVATE_GPG_KEY
+         run: echo "${{ secrets.PRIVATE_GPG_KEY }}" | gpg2 --import
+      - run: gpg2 --list-secret-keys
       - name: Mount bazel cache  # Optional
         uses: actions/cache@v3
         with:

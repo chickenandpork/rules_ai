@@ -1,0 +1,4 @@
+creation_rules:
+    # multiple key IDs can be listed here for different users; payload encrypted by all
+    - pgp: >-
+        C1806AADEDE07581D8C83044A357BA9C07DBBB21

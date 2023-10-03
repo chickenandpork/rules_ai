@@ -1,0 +1,28 @@
+OPENAI_API_KEY: ENC[AES256_GCM,data:ui5M+AgtglFu,iv:sfBXK51W/F5RB1usuvUn2BcIknyku/ikb0zssRGO9DI=,tag:3alWV4l7ukmIwLEJAssrvQ==,type:str]
+BOB: ENC[AES256_GCM,data:e5BbuQ==,iv:s42AK/MmiPqcKW2rXGR913FEo7ejMpjGiHNduvVdpA0=,tag:yfvja8bFlQKnItL8gcwGSQ==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age: []
+    lastmodified: "2023-10-03T23:05:45Z"
+    mac: ENC[AES256_GCM,data:/1E8xQZ80FhpijKdHAPfbQLCwVPR0qAgdNBagxf3h3qAw2gO4xm8C18DqhwuGLSxON2Jx9X17n2JYGms97xjMXVo1EyzchwSVa3PXA0K9+aPOqOt8CTodiFNlH4fQFhbqFJAga3LUGvSNSSgjoiqoSuUfl4F5FlLDF+cAejyaG8=,iv:ngvCMXbHQnZeAtD5pR9O967da5y6qXbn9xWqIYQvBkM=,tag:OkhE6ybzBCXeetXf8j8fUw==,type:str]
+    pgp:
+        - created_at: "2023-10-03T23:05:43Z"
+          enc: |
+            -----BEGIN PGP MESSAGE-----
+
+            hQEMA0q8cMKV4r3IAQf/WMYEljjGpPC9yvGbRGzyUMUF0yD6MuU4Pcbcb69589Et
+            ByFpyYqwuBXNOqBeLoD3XY0+Z9UcMA23Pih1dKUHD12pkvZ0zYFCptHcUFnfuKmd
+            Rskp5FrffOQyWhoVdI08LIl+M85shGBG6LR6tH7IbsHhscR+il8Umi4Z9Hbh/jf0
+            JhzgK1pp3ZhbIntVLIfPSAuvHbBKpD/1ry0Cjd8QKKeTyyjUKzWglnXeDlrB3W03
+            4x91uonXFl+aU1GMa3xYhNZFecxK5nGtzwvirr2Z58UEv+OBKryeQIfC0d1aplS+
+            oMLdwd0gErE9TipNTNIYNc19hYveJ/u789ANYluyzNRoAQkCEKRp+uMXduaU9pye
+            2G3NId1DgFPdb1sHgPBX6VgLaub/l5Ha7JN9XhQXZNGHxncdBtenqYUlOuF3X9zG
+            I/Z414TwmX+Bah2lnKtAMtEpjdZV++YfaNfTX4FC4HMpPfPtj4qMZZs=
+            =dfmc
+            -----END PGP MESSAGE-----
+          fp: C1806AADEDE07581D8C83044A357BA9C07DBBB21
+    unencrypted_suffix: _unencrypted
+    version: 3.7.3
