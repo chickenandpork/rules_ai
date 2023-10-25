@@ -106,3 +106,10 @@ diff_test(
         "@platforms//os:windows": ":make_platform_agnostic_windows",
     }),
 )
+
+py_library(
+    name = "envexport",
+    srcs = ["envexport.py"],
+    visibility = ["//visibility:public"],
+    #deps = [ ]
+)
