@@ -3,12 +3,12 @@ load("@rules_python//python:defs.bzl", "py_binary", "py_test")
 
 py_test(
     name = "test",
-    env = { "SOPS": "sops_decrypt.yaml" },
     size = "small",
     srcs = ["test.py"],
+    data = ["sops_decrypt.yaml"],
+    env = {"SOPS": "sops_decrypt.yaml"},
     deps = [
         "@pypi_pyyaml//:pkg",
         "@rules_ai//lib/python:envexport",
     ],
-    data = [ "sops_decrypt.yaml" ],
 )

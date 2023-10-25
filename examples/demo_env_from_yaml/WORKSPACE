@@ -19,11 +19,15 @@ load("@rules_ai//:deps.bzl", rules_ai_dependencies = "dependencies")
 rules_ai_dependencies()
 
 load("@com_github_masmovil_bazel_rules//repositories:repositories.bzl", mm_repositories = "repositories")
+
 mm_repositories()
 
 load("@rules_ai//:python_defs.bzl", rules_ai_py_toolchain = "py_toolchain")
 
-rules_ai_py_toolchain(python_version = "3.9", python_repo_name = "python39")
+rules_ai_py_toolchain(
+    python_repo_name = "python39",
+    python_version = "3.9",
+)
 
 # Load a pre-curated set of default per-OS requirements, naming the repo "pypi", then (a standard
 # step of "rules_python" use) install the dependencies defined in this vendored requirements spec
