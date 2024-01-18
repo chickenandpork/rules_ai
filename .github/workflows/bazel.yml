@@ -32,7 +32,7 @@ jobs:
         run: echo "${{ secrets.PRIVATE_GPG_KEY }}" | gpg2 --import
       - run: gpg2 --list-secret-keys
       - name: Mount bazel cache  # Optional
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           # needs to be an absolute path, not a variable; I've made it match TEST_TMPDIR above
           path: /tmp/bazel
