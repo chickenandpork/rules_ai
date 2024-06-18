@@ -2,7 +2,9 @@
 
 ## Dockerfile
 
-I found that maintaining the requirements file specific to linux was difficult on a Mac: python simply assumes too much, and/or the magic setup.py differs so much form each developer, and each seeks to magically set up everything needed, that the host system greatly taints the result.
+I found that maintaining the requirements file specific to linux was difficult on a Mac: python
+simply assumes too much, and/or the magic setup.py differs so much form each developer, and each
+seeks to magically set up everything needed, that the host system greatly taints the result.
 
 ... so I've been maintaining //lib/python:requirements_linux.txt using a container:
 
