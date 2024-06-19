@@ -7,8 +7,8 @@
   "packageRules": [
     {
       "automerge": true,
-      "enabled": false,
-      "matchManagers": [ "bazel" ],
+      "enabled": true,
+      "matchManagers": [ "bazel", "python" ],
       "matchUpdateTypes": [ "patch", "minor" ]
     }
   ],
