@@ -17,7 +17,7 @@ jobs:
         # action runners have bazelisk: https://github.com/bazelbuild/bazel/issues/11062
       - run: mkdir -p "${TEST_TMPDIR}"
       - name: Mount bazel cache  # Optional
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           # needs to be an absolute path, not a variable; I've made it match TEST_TMPDIR above
           path: /tmp/bazel
