@@ -28,7 +28,7 @@ jobs:
             bazel run //lib/python:requirements.update
             bazel run //lib/python:vendor_requirements
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v3.10.0
+        uses: peter-evans/create-pull-request@v6.1.0
         with:
           add-paths: lib/python/*
           token: ${{ secrets.GITHUB_TOKEN }}
