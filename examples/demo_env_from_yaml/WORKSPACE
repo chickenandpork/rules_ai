@@ -1,0 +1,41 @@
+workspace(name = "demo_env_from_yaml")
+
+# if copy-pasting, use this instead:
+#
+# load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+# http_archive(
+#     name = "rules_ai",
+#     sha256 = "...",
+#     strip_prefix = "rules_ai-x.y.z",
+#     url = "https://github.com/chickenandpork/rules_ai/releases/download/x.y.z/rules_ai-x.y.z.tar.gz",
+# )
+local_repository(
+    name = "rules_ai",
+    path = "../..",
+)
+
+load("@rules_ai//:deps.bzl", rules_ai_dependencies = "dependencies")
+
+rules_ai_dependencies()
+
+load("@com_github_masmovil_bazel_rules//repositories:repositories.bzl", mm_repositories = "repositories")
+
+mm_repositories()
+
+load("@rules_ai//:python_defs.bzl", rules_ai_py_toolchain = "py_toolchain")
+
+rules_ai_py_toolchain(
+    python_repo_name = "python39",
+    python_version = "3.9",
+)
+
+# Load a pre-curated set of default per-OS requirements, naming the repo "pypi", then (a standard
+# step of "rules_python" use) install the dependencies defined in this vendored requirements spec
+
+load("@rules_ai//:requirements.bzl", "vendored_requirements")
+
+vendored_requirements(name = "pypi")
+
+load("@pypi//:requirements.bzl", "install_deps")
+
+install_deps()
