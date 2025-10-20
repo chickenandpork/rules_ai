@@ -1,5 +1,2 @@
-bazel-bin
-bazel-out
-bazel-rules_ai
-bazel-testlogs
-examples/**/bazel-*
+bazel-*
+MODULE.bazel.lock

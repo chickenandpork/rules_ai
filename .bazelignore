@@ -1,3 +1,11 @@
 # examples are build as though importing this ruleset
-examples
+
+# examples
+examples/demo_nvrtc
+examples/demo_vendored_requirements
+examples/huggingface_transformer_fillmask
+examples/huggingface_transformer_question_answering
+examples/demo_rules_python
+examples/huggingface_transformer_distilgpt2
+examples/huggingface_transformer_named_entity_recognition
 

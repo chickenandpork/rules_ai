@@ -41,7 +41,7 @@ jobs:
       - run: bazel test //... --test_output=errors --test_summary=detailed
       - name: Build examples to ensure functionality
         run: |
-            for d in $(find examples -name WORKSPACE -exec dirname {} \; ); do
+            for d in $(find examples -name MODULE.bazel -exec dirname {} \; ); do
             echo "::group::example: ${d}"
             case ${RUNNER_ENVIRONMENT}:${d} in
                 github-hosted:examples/huggingface_transformer_question_answering) echo "TOO big: skip in github-hosted" ;;

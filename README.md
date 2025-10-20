@@ -40,7 +40,7 @@ rules_ai_dependencies()  # define before use of python_defs.bzl
 
 load("@rules_ai//:python_defs.bzl", rules_ai_py_toolchain = "py_toolchain")
 
-rules_ai_py_toolchain(python_version = "3.9", python_repo_name = "python39")
+rules_ai_py_toolchain(python_version = "3.9", python_repo_name = "python3_9")
 
 # Load a pre-curated set of default per-OS requirements, naming the repo "pypi", then (a standard
 # step of "rules_python" use) install the dependencies defined in this vendored requirements spec
@@ -54,7 +54,7 @@ load("@pypi//:requirements.bzl", "install_deps")
 install_deps()
 ```
 Notice that:
-1. we set the python version, and a "python39" label; later, this is "@python39"
+1. we set the python version, and a "python3_9" label; later, this is "@python3_9"
 2. we use `vendored_requirements(name = "pypi")`, which defines our "@pypi" for the following
     `load("@pypi...)` command
 
