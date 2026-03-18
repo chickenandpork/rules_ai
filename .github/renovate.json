@@ -1,20 +1,30 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:base"
+    "config:recommended"
   ],
-  "labels": [ "dependencies" ],
+  "labels": [
+    "dependencies"
+  ],
   "packageRules": [
     {
       "automerge": true,
       "enabled": false,
-      "matchManagers": [ "bazel" ],
-      "matchUpdateTypes": [ "patch", "minor" ]
+      "matchManagers": [
+        "bazel"
+      ],
+      "matchUpdateTypes": [
+        "patch",
+        "minor"
+      ]
     }
   ],
-  "regexManagers": [
+  "customManagers": [
     {
-      "fileMatch": [ ".github/workflows/.*.yml" ],
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/.github/workflows/.*.yml/"
+      ],
       "matchStrings": [
         "renovatebot datasource=(?<datasource>.*?) depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\\s.*?_VERSION: (?<currentValue>.*)\\s"
       ],
