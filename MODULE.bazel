@@ -1,0 +1,56 @@
+module(name="rules_ai")
+
+bazel_dep(name = "bazel_skylib", version = "1.8.2")
+bazel_dep(name = "rules_cuda", version = "0.4.0")
+bazel_dep(name = "rules_python", version = "1.7.0")
+bazel_dep(name = "platforms", version = "1.0.0")
+
+# pick a specific version (PR461) to collect PR454
+archive_override(
+    module_name = "rules_cuda",
+    integrity = "sha256-dG/ibqv0g2x/aABhWUBFND9895O40QVv+ENBseZJKrk=",
+    url = "https://github.com/bazel-contrib/rules_cuda/archive/060e6e8d4c525bc079ec05c46f470941cc980b52.tar.gz",
+    strip_prefix = "rules_cuda-060e6e8d4c525bc079ec05c46f470941cc980b52",
+)
+
+
+cuda = use_extension("@rules_cuda//cuda:extensions.bzl", "toolchain")
+
+cuda.redist_json(
+    name = "cuda_13_0_2",
+    version = "13.0.2",
+    platforms = [  # parameter requires PR454
+        "linux-x86_64",
+        "linux-aarch64",
+    ],
+)
+cuda.redist_json(
+    name = "cuda_12_8_1",
+    version = "12.8.1",
+    platforms = [
+        "linux-x86_64",
+        "linux-aarch64",
+    ],
+)
+
+cuda.toolkit(name = "cuda")
+use_repo(cuda, "cuda")
+
+
+python = use_extension("@rules_python//python/extensions:python.bzl", "python")
+python.toolchain(
+    configure_coverage_tool = True,
+    python_version = "3.9",
+)
+use_repo(python, "python_3_9")
+
+pip = use_extension("@rules_python//python/extensions:pip.bzl", "pip")
+pip.parse(
+    hub_name = "pypi",
+    python_version = "3.9",
+    requirements_darwin = "//lib/python:requirements_darwin.txt",
+    requirements_linux = "//lib/python:requirements_linux.txt",
+    requirements_lock = "//lib/python:requirements.txt",
+)
+use_repo(pip, "pypi")
+

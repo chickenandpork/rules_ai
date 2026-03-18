@@ -1,0 +1,49 @@
+load("@rules_cuda//cuda:defs.bzl", "cuda_binary")
+
+# Compile and link with nVidia Realime Compiler
+#
+# results in:
+#
+# external/rules_cuda++toolchain+cuda_nvcc_v12.1.105/nvcc/bin/nvcc
+# -x cu
+# -Xcompiler
+# -fPIC
+# -ccbin /usr/bin/gcc
+# -I .
+# -I bazel-out/k8-fastbuild/bin
+# -I external/rules_cuda++toolchain+cuda_cudart_v12.1.105
+# -I bazel-out/k8-fastbuild/bin/external/rules_cuda++toolchain+cuda_cudart_v12.1.105
+# -I external/rules_cuda++toolchain+cuda_nvcc_v12.1.105
+# -I bazel-out/k8-fastbuild/bin/external/rules_cuda++toolchain+cuda_nvcc_v12.1.105
+# -I external/rules_cuda++toolchain+cuda_cccl_v12.1.109
+# -I bazel-out/k8-fastbuild/bin/external/rules_cuda++toolchain+cuda_cccl_v12.1.109
+# -isystem external/rules_cuda++toolchain+cuda_nvcc_v12.1.105/nvcc/include
+# -isystem bazel-out/k8-fastbuild/bin/external/rules_cuda++toolchain+cuda_nvcc_v12.1.105/nvcc/include
+# -isystem external/rules_cuda++toolchain+cuda_cccl_v12.1.109/cccl/include
+# -isystem bazel-out/k8-fastbuild/bin/external/rules_cuda++toolchain+cuda_cccl_v12.1.109/cccl/include
+# -isystem external/rules_cuda++toolchain+cuda_cudart_v12.1.105/cudart/include
+# -isystem bazel-out/k8-fastbuild/bin/external/rules_cuda++toolchain+cuda_cudart_v12.1.105/cudart/include
+# -O0
+# --generate-line-info
+# -Xcompiler
+# -g1 '-std=c++17'
+# _I/usr/local/cuda/include
+# -c examples/demo_nvrtc/nvrtc_test.cu
+# -o bazel-out/k8-fastbuild/bin/examples/demo_nvrtc/_objs/_nvrtc_test/nvrtc_test.pic.o
+# --expt-relaxed-constexpr
+# --expt-extended-lambda
+
+cuda_binary(
+    name = "nvrtc_test",
+    srcs = [ "nvrtc_test.cu" ],
+    copts = [
+        "-std=c++17",
+        "_I/usr/local/cuda/include",
+    ],
+    linkopts = [
+        "-L/usr/local/cuda/lib64",
+        "-lnvrtc",
+        "-lcuda",
+    ],
+    visibility=["//visibility:public" ],
+)
