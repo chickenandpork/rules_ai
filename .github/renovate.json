@@ -11,7 +11,8 @@
       "automerge": true,
       "enabled": false,
       "matchManagers": [
-        "bazel"
+        "bazel",
+        "bazel-module"
       ],
       "matchUpdateTypes": [
         "patch",
