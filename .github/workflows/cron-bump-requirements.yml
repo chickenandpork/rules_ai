@@ -17,7 +17,7 @@ jobs:
       contents: write
       pull-requests: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         # action runners have bazelisk: https://github.com/bazelbuild/bazel/issues/11062
       - run: mkdir -p "${TEST_TMPDIR}"
       - name: Mount bazel cache  # Optional
