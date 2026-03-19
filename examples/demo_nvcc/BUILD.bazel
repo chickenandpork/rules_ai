@@ -1,0 +1,20 @@
+load("@rules_cuda//cuda:defs.bzl", "cuda_binary", "cuda_test")
+
+package(default_visibility = ["//visibility:public"])
+
+alias(name="demo_nvcc", actual = "hello_world")
+
+cuda_binary(
+    name = "hello_world",
+    srcs = ["hello_world.cu"],
+)
+
+cuda_test(
+    name = "test",
+    srcs = ["hello_test.cu"],
+)
+
+cuda_test(
+    name = "host_check",
+    srcs = ["host_check.cu"],
+)
