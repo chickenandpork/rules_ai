@@ -1152,9 +1152,9 @@ tqdm==4.66.1 \
     #   huggingface-hub
     #   openai
     #   transformers
-transformers==4.33.1 \
-    --hash=sha256:0630c2d26448d7c6cb78435e6c43910c89e99387badea6be1f565ffa3f093f1d \
-    --hash=sha256:744265e9f0724d22c229938f28376af54abce730ef647f35bd1685abf49912a4
+transformers==4.48.0 \
+    --hash=sha256:03fdfcbfb8b0367fb6c9fbe9d1c9aa54dfd847618be9b52400b2811d22799cb1 \
+    --hash=sha256:6d3de6d71cb5f2a10f9775ccc17abce9620195caaf32ec96542bd2a6937f25b0
     # via -r lib/python/requirements.in
 triton==2.0.0 \
     --hash=sha256:0117722f8c2b579cd429e0bee80f7731ae05f63fe8e9414acd9a679885fcbf42 \
