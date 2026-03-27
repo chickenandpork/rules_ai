@@ -673,9 +673,11 @@ nvidia-cusolver-cu11==11.4.0.1 \
     --hash=sha256:700b781bfefd57d161443aff9ace1878584b93e0b2cfef3d6e9296d96febbf99 \
     --hash=sha256:72fa7261d755ed55c0074960df5904b65e2326f7adce364cbe4945063c1be412
     # via torch
-nvidia-cusparse-cu11==11.7.4.91 \
-    --hash=sha256:304a01599534f5186a8ed1c3756879282c72c118bc77dd890dc1ff868cad25b9 \
-    --hash=sha256:a3389de714db63321aa11fbec3919271f415ef19fda58aed7f2ede488c32733d
+nvidia-cusparse-cu11==11.7.5.86 \
+    --hash=sha256:4ae709fe78d3f23f60acaba8c54b8ad556cf16ca486e0cc1aa92dca7555d2d2b \
+    --hash=sha256:6c7da46abee7567e619d4aa2e90a1b032cfcbd1211d429853b1a6e87514a14b2 \
+    --hash=sha256:8d7cf1628fd8d462b5d2ba6678fae34733a48ecb80495b9c68672ec6a6dde5ef \
+    --hash=sha256:a0f6ee81cd91be606fc2f55992d06b09cd4e86d74b6ae5e8dd1631cf7f5a8706
     # via torch
 nvidia-nccl-cu11==2.14.3 \
     --hash=sha256:5e5534257d1284b8e825bc3a182c6f06acd6eb405e9f89d49340e98cd8f136eb
