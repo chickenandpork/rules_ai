@@ -17,21 +17,21 @@ archive_override(
 cuda = use_extension("@rules_cuda//cuda:extensions.bzl", "toolchain")
 
 cuda.redist_json(
-    name = "cuda_13_0_2",
-    version = "13.0.2",
-    platforms = [  # parameter requires PR454
-        "linux-x86_64",
-        "linux-aarch64",
-    ],
-)
-cuda.redist_json(
-    name = "cuda_12_8_1",
-    version = "12.8.1",
+    name = "cuda_12_6_3",
+    version = "12.6.3",
     platforms = [
         "linux-x86_64",
         "linux-aarch64",
     ],
 )
+#cuda.redist_json(
+#    name = "cuda_13_0_2",
+#    version = "13.0.2",
+#    platforms = [  # parameter requires PR454
+#        "linux-x86_64",
+#        "linux-aarch64",
+#    ],
+#)
 
 cuda.toolkit(name = "cuda")
 use_repo(cuda, "cuda")
