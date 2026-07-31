@@ -37,8 +37,8 @@ jobs:
           # needs to be an absolute path, not a variable; I've made it match TEST_TMPDIR above
           path: /tmp/bazel
           key: _bazel_runner
-      - run: bazel build //...
-      - run: bazel test //... --test_output=errors --test_summary=detailed
+      - run: bazel build //... --noenable_bzlmod
+      - run: bazel test //... --noenable_bzlmod --test_output=errors --test_summary=detailed
       - name: Build examples to ensure functionality
         run: |
             for d in $(find examples -name MODULE.bazel -exec dirname {} \; ); do
@@ -46,7 +46,10 @@ jobs:
             case ${RUNNER_ENVIRONMENT}:${d} in
                 github-hosted:examples/huggingface_transformer_question_answering) echo "TOO big: skip in github-hosted" ;;
                 github-hosted:examples/huggingface_transformer_fillmask) echo "TOO big: skip in github-hosted" ;;
-                *) (cd ${d} && bazel build //... && bazel test //...  --test_output=errors --test_summary=detailed --action_env=TRANSFORMERS_CACHE && bazel clean );;
+                *) (cd ${d} && \
+                    bazel build //... --noenable_bzlmod --action_env=TRANSFORMERS_CACHE && \
+                    bazel test  //... --noenable_bzlmod --action_env=TRANSFORMERS_CACHE --test_output=errors --test_summary=detailed && \
+                    bazel clean );;
             esac
             echo "::endgroup::"
             done
