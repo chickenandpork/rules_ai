@@ -215,9 +215,9 @@ dataclasses-json==0.5.14 \
     --hash=sha256:5ec6fed642adb1dbdb4182badb01e0861badfd8fda82e3b67f44b2d1e9d10d21 \
     --hash=sha256:d82896a94c992ffaf689cd1fafc180164e2abdd415b8f94a7f78586af5886236
     # via langchain
-filelock==3.12.4 \
-    --hash=sha256:08c21d87ded6e2b9da6728c3dff51baf1dcecf973b768ef35bcbc3447edb9ad4 \
-    --hash=sha256:2e6f249f1f3654291606e046b09f1fd5eac39b360664c27f5aad072012f8bcbd
+filelock==3.20.3 \
+    --hash=sha256:18c57ee915c7ec61cff0ecf7f0f869936c7c30191bb0cf406f1341778d0834e1 \
+    --hash=sha256:4b0dda527ee31078689fc205ec4f1c1bf7d56cf88b6dc9426c4f230e46c2dce1
     # via
     #   huggingface-hub
     #   torch
