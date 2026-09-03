@@ -17,11 +17,11 @@ jobs:
       contents: write
       pull-requests: write
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         # action runners have bazelisk: https://github.com/bazelbuild/bazel/issues/11062
       - run: mkdir -p "${TEST_TMPDIR}"
       - name: Mount bazel cache  # Optional
-        uses: actions/cache@v5
+        uses: actions/cache@caa296126883cff596d87d8935842f9db880ef25 # v5
         with:
           # needs to be an absolute path, not a variable; I've made it match TEST_TMPDIR above
           path: /tmp/bazel
@@ -32,7 +32,7 @@ jobs:
             bazel run //lib/python:requirements.update || true
             bazel run //lib/python:vendor_requirements
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v8.1.0
+        uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0 # v8.1.0
         with:
           add-paths: |
             lib/python/*.txt
